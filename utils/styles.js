@@ -10,11 +10,25 @@ const useStyles = makeStyles({
   },
   main: {
     minHeight: "80vh",
-    backgroundColor: "blue",
+    // backgroundColor: "#F4F6F6",
   },
-    footer: {
-      textAlign: "center",
-    },
+  brand: {
+    fontWeight: "bold",
+    fontSize: "1.8rem",
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  sectiom: {
+    marginTop: "20px",
+    marginBottom: "20px",
+    textDecoration: "none",
+  },
+  footer: {
+    textAlign: "center",
+    marginTop: "20px",
+    // backgroundColor: "rgb(32,48,64)",
+  },
 });
 
 export default useStyles;
