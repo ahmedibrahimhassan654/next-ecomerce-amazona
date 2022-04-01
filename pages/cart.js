@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-
+import dynamic from "next/dynamic";
 import Layout from "../components/Layout";
 import { Store } from "../utils/Store";
 import NextLink from "next/link";
@@ -25,7 +25,7 @@ import {
 // // import axios from "axios";
 // import { useRouter } from "next/router";
 
-export default function cartScreen() {
+function CartScreen() {
   //   const router = useRouter();
   const { state } = useContext(Store);
   const {
@@ -153,3 +153,4 @@ export default function cartScreen() {
     </Layout>
   );
 }
+export default dynamic(() => Promise.resolve(CartScreen), { ssr: false });
