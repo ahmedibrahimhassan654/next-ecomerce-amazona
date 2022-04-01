@@ -14,12 +14,15 @@ import {
 } from "@mui/material";
 import useStyles from "../../utils/styles";
 import Image from "next/image";
+import db from "../../utils/db";
+import Product from "../../models/Product";
 
-const ProductScreen = () => {
-  const router = useRouter();
+const ProductScreen = (props) => {
+  const { product } = props;
+  // const router = useRouter();
   const classes = useStyles();
-  const { slug } = router.query;
-  const product = data.products.find((a) => a.slug === slug);
+  // const { slug } = router.query;
+  //const product = data.products.find((a) => a.slug === slug);
   if (!product) {
     return <div>No products found </div>;
   }
@@ -109,4 +112,14 @@ const ProductScreen = () => {
   );
 };
 
+export async function getServerSideProps(context) {
+  const { params } = context;
+  const { slug } = params;
+  await db.connect();
+  const product = await Product.findOne({ slug }).lean();
+  await db.disconnect();
+  return {
+    props: { product: db.convertDocToObj(product) },
+  };
+}
 export default ProductScreen;
